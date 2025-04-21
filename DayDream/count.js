@@ -1,11 +1,10 @@
 (function () {
-  const BACK_THRESHOLD = 1500; // 1.5초 이내를 연속으로 간주
+  const BACK_THRESHOLD = 1500;
   const REQUIRED_BACK_COUNT = 5;
 
   function showAlienHand() {
     if (document.getElementById("alien-hand")) return;
 
-    // 외계인 손
     const hand = document.createElement("img");
     hand.id = "alien-hand";
     hand.src = "/images/ALIEN HAND2.gif";
@@ -16,7 +15,6 @@
     hand.style.zIndex = "1000";
     document.body.appendChild(hand);
 
-    // 말풍선
     setTimeout(() => {
       const bubble = document.createElement("div");
       bubble.style.position = "fixed";
@@ -48,10 +46,9 @@
       text.style.color = "#000";
       text.style.fontSize = "11px";
       text.style.lineHeight = "1.4";
-      text.style.position = "relative"; // 기준이 되도록 설정
+      text.style.position = "relative";
       text.style.transform = "translate(28px, -15px)";      
 
-      // p 태그 여백 제거
       [...text.querySelectorAll("p")].forEach(p => {
         p.style.margin = "4px 0";
       });
@@ -64,10 +61,10 @@
   // 실제 뒤로가기로 진입한 경우만 카운트
   function handleBackTracking() {
     const loggedInUser = localStorage.getItem("loggedInUser");
-    if (!loggedInUser) return; // ❌ 로그인 안 했으면 바로 종료
+    if (!loggedInUser) return;
     
     const navType = performance.getEntriesByType("navigation")[0]?.type;
-    if (navType !== "back_forward") return; // 진짜 뒤로가기가 아닌 경우 무시
+    if (navType !== "back_forward") return;
 
     const now = Date.now();
     const lastBackTime = parseInt(sessionStorage.getItem("lastBackTime") || "0", 10);
@@ -88,7 +85,6 @@
     }
   }
 
-  // 페이지 진입 시 감지
   window.addEventListener("pageshow", () => {
     handleBackTracking();
   });

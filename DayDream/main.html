@@ -30,16 +30,13 @@
       <button onclick="logout()" style="margin-left: 1em;">로그아웃</button>
     </div>
          
-
-    <!-- 햄버거 메뉴 아이콘 -->
-    <div class="menu-icon" id="hamburger-button" onclick="toggleMenu(event)"> <!-- ✅ id 추가 -->
+    <div class="menu-icon" id="hamburger-button" onclick="toggleMenu(event)">
       <div></div>
       <div></div>
       <div></div>
     </div>
 
-    <!-- 모바일 메뉴 -->
-    <div class="mobile-menu" id="mobile-menu" onclick="event.stopPropagation()"> <!-- ✅ 클릭 내부 이벤트 stop -->
+    <div class="mobile-menu" id="mobile-menu" onclick="event.stopPropagation()">
       <div id="mobile-auth-section">
         <a href="login.html">로그인</a>
         <a href="/DayDream/signup.html">회원가입</a>
@@ -56,8 +53,7 @@
       <a href="#" onclick="handlePointAccess()">포인트 등록</a>
     </div>
 
-    <!-- 메뉴 외부 클릭 시 닫기 -->
-    <div id="mobile-overlay" class="hidden" onclick="closeMenu()"></div> <!-- ✅ 오버레이 클릭으로 닫기 -->
+    <div id="mobile-overlay" class="hidden" onclick="closeMenu()"></div>
 
       
   </header>

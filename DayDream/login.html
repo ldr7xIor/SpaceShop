@@ -87,10 +87,9 @@
           const errorDiv = document.getElementById("error-message");
       
           if (id === "yongj1111" && pw === "Dydajflgodks!111") {
-            // ✅ 로그인 성공 시 로컬스토리지에 사용자 정보 저장
             localStorage.setItem("loggedInUser", "이자헌");
       
-            errorDiv.style.display = "none"; // 에러 메시지 숨기기
+            errorDiv.style.display = "none";
             window.location.href = "/DayDream/main.html";
           } else {
             errorDiv.textContent = "존재하지 않는 계정입니다.";

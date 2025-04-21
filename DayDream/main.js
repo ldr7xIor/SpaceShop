@@ -20,7 +20,7 @@ function toggleMenu(event) {
     overlay.classList.add("hidden");
   }
 
-  // ✅ 문서 클릭 시 메뉴 닫기
+  // 문서 클릭 시 메뉴 닫기
   document.addEventListener("click", function (event) {
     const menu = document.getElementById("mobile-menu");
     const hamburger = document.getElementById("hamburger-button");
@@ -128,54 +128,4 @@ function toggleMenu(event) {
   function goToDetail(el) {
     const name = el.dataset.name;
     window.location.href = `detail.html?name=${encodeURIComponent(name)}`;
-  }
-
-  // 말풍선 링크 클릭 시 깨지는 효과 후 이동
-setTimeout(() => {
-  document.querySelectorAll('.alien-link').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      startShatterEffect(() => {
-        window.location.href = link.getAttribute('href');
-      });
-    });
-  });
-}, 0);
-
-// 💥 메인 페이지 깨지는 효과
-function startShatterEffect(callback) {
-  const pieceCount = 80;
-
-  for (let i = 0; i < pieceCount; i++) {
-    const piece = document.createElement("div");
-    piece.className = "glass-piece";
-
-    // 랜덤 위치
-    const size = Math.random() * 80 + 20;
-    piece.style.width = `${size}px`;
-    piece.style.height = `${size}px`;
-    piece.style.left = `${Math.random() * window.innerWidth}px`;
-    piece.style.top = `${Math.random() * window.innerHeight}px`;
-
-    // 랜덤 배경
-    piece.style.background = `rgba(255, 255, 255, ${Math.random() * 0.7 + 0.3})`;
-    document.body.appendChild(piece);
-
-    // 랜덤 이동 방향
-    const dx = (Math.random() - 0.5) * 1000;
-    const dy = (Math.random() - 1) * 1000;
-    const rot = (Math.random() - 0.5) * 1080;
-
-    // 트랜지션 적용
-    requestAnimationFrame(() => {
-      piece.style.transform = `translate(${dx}px, ${dy}px) rotate(${rot}deg)`;
-      piece.style.opacity = 0;
-    });
-  }
-
-  setTimeout(() => {
-    callback(); // 페이지 이동
-  }, 1000);
-}
-
-  
+  }  

@@ -80,20 +80,18 @@
     <h1>도착!</h1>
   </div>
 
-  <!-- Fireworks 모듈을 불러오고 window.Fireworks에 등록 -->
   <script type="module">
     import { Fireworks } from 'https://cdn.skypack.dev/fireworks-js'
     window.Fireworks = Fireworks;
   </script>
 
-  <!-- 실제 코드 -->
   <script>
     const cartItems = JSON.parse(localStorage.getItem('newCart')) || [];
     let total = cartItems.reduce((sum, item) => sum + item.price, 0);
     let finalTotal = total;
 
     if (total > 100000000) {
-      finalTotal = Math.floor(total * 0.8); // 20% 할인
+      finalTotal = Math.floor(total * 0.8);
     }
 
     document.getElementById('amount').textContent = `₩${finalTotal.toLocaleString()}`;

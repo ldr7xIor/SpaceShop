@@ -25,7 +25,7 @@
     const loggedInUser = localStorage.getItem("loggedInUser");
     if (!loggedInUser) {
         alert("로그인이 필요합니다.");
-        window.location.href = "login.html"; // 로그인 페이지로 강제 이동
+        window.location.href = "login.html";
     }
     const urlParams = new URLSearchParams(window.location.search);
     const name = urlParams.get('name');
