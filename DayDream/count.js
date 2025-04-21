@@ -34,13 +34,13 @@
       bubble.style.flexDirection = "column";
       bubble.style.justifyContent = "center";
       bubble.style.alignItems = "flex-start";
-      
+
       const text = document.createElement("div");
       text.innerHTML = `
-      <p><em><a href="../Alien/title.html" class="alien-link">1주년 감사 할인 중! ~80%</a></em></p>        
-      <p><em><a href="../Alien/title.html" class="alien-link">직장이 지루한가요? &gt;&gt; 클릭</a></em></p>
-      <p><em><a href="../Alien/title.html" class="alien-link">더 강해지고 싶나요? &gt;&gt; 클릭</a></em></p>
-      <p><em><a href="../Alien/title.html" class="alien-link">멋진 물건을 가지고 싶나요? &gt;&gt; 클릭</a></em></p>
+        <p><em><a href="../Alien/title.html" class="alien-link">1주년 감사 할인 중! ~80%</a></em></p>        
+        <p><em><a href="../Alien/title.html" class="alien-link">직장이 지루한가요? &gt;&gt; 클릭</a></em></p>
+        <p><em><a href="../Alien/title.html" class="alien-link">더 강해지고 싶나요? &gt;&gt; 클릭</a></em></p>
+        <p><em><a href="../Alien/title.html" class="alien-link">멋진 물건을 가지고 싶나요? &gt;&gt; 클릭</a></em></p>
       `;
 
       text.style.zIndex = "1002";
@@ -48,7 +48,7 @@
       text.style.fontSize = "11px";
       text.style.lineHeight = "1.4";
       text.style.position = "relative";
-      text.style.transform = "translate(28px, -15px)";      
+      text.style.transform = "translate(28px, -15px)";
 
       [...text.querySelectorAll("p")].forEach(p => {
         p.style.margin = "4px 0";
@@ -59,13 +59,9 @@
     }, 1000);
   }
 
-  // 실제 뒤로가기로 진입한 경우만 카운트
   function handleBackTracking() {
     const loggedInUser = localStorage.getItem("loggedInUser");
     if (!loggedInUser) return;
-    
-    const navType = performance.getEntriesByType("navigation")[0]?.type;
-    if (navType !== "back_forward") return;
 
     const now = Date.now();
     const lastBackTime = parseInt(sessionStorage.getItem("lastBackTime") || "0", 10);
@@ -86,7 +82,17 @@
     }
   }
 
-  window.addEventListener("pageshow", () => {
-    handleBackTracking();
-  });
+  // GitHub Pages 환경 대응을 위한 보완된 감지 로직
+  function detectBackNavigation(event) {
+    const navEntry = performance.getEntriesByType("navigation")[0];
+    const navType = navEntry?.type || "navigate";
+
+    if (event?.persisted || navType === "back_forward") {
+      handleBackTracking();
+    }
+  }
+
+  window.addEventListener("pageshow", detectBackNavigation);
+  window.addEventListener("popstate", handleBackTracking); // 보조적 감지
+
 })();
