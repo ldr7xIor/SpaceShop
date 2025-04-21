@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>우주 쇼핑몰</title>
+  <style>
+    @font-face {
+      font-family: 'DungGeunMo';
+      src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: 'DungGeunMo', sans-serif;
+      overflow: hidden;
+      position: relative;
+      background: black;
+    }
+
+    /* 빙글빙글 무지개 배경 */
+    body::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(red, orange, yellow, green, cyan, blue, violet, red);
+      animation: spinBg 15s linear infinite;
+      z-index: -1;
+      border-radius: 50%;
+    }
+
+    @keyframes spinBg {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    h1 {
+      margin: 0.5em 0;
+    }
+
+    h1 .bracket {
+      color: rgb(255, 0, 234);
+    }
+
+    h1 .title-text {
+      color: rgb(0, 255, 183);
+    }
+
+    h3 {
+      margin: 0.5em 0;
+    }
+
+    .highlight {
+      color: rgb(255, 247, 0);
+      text-shadow: 4px 2.2px 0 rgba(81, 81, 81, 0.8);
+    }
+
+    .ufo-wrapper {
+      position: absolute;
+      bottom: 40px;
+      left: 80px;
+      animation: floatUpDown 3s ease-in-out infinite;
+    }
+
+    .ufo {
+      width: 150px;
+      height: auto;
+      animation: spin 5s linear infinite;
+      transform-origin: center;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes floatUpDown {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-100px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>
+    <span class="bracket">&lt;</span>
+    <span class="title-text">우주 쇼핑몰</span>
+    <span class="bracket">&gt;</span>
+  </h1>
+  <h3><a href="/Alien/newMain.html">&gt;&gt;나는 물건을 본다</a></h3>
+  <h3 class="highlight">☆재단장 기념 할인 행사!☆</h3>
+  <h3 class="highlight">놀랍다 가격!</h3>
+
+  <div class="ufo-wrapper">
+    <img src="/images/ALIEN SHIP.gif" alt="초록 우주선" class="ufo">
+  </div>
+</body>
+</html>

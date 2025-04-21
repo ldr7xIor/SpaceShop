@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포인트 등록</title>
+    <style>
+        body {
+        font-family: 'Segoe UI', sans-serif;
+        margin: 0;
+        padding: 2em;
+        background-color: #f8f9fa;
+        }
+
+        header h1 a {
+        text-decoration: none;
+        color: #2c3e50;
+        }
+
+        header h2 {
+        margin-top: 0.5em;
+        color: #555;
+        }
+
+        header div a {
+        margin-right: 1em;
+        color: #3498db;
+        text-decoration: none;
+        }
+
+        form {
+        margin: 2em 0;
+        padding: 2em;
+        background-color: white;
+        border-radius: 10px;
+        max-width: 500px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        select,
+        input[type="text"],
+        input[type="file"] {
+        display: block;
+        width: 95%;
+        margin-top: 1em;
+        padding: 0.7em;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        }
+
+        button {
+        margin-top: 1.5em;
+        padding: 0.8em 1.5em;
+        background-color: #0078D7;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        }
+
+        div:last-of-type {
+        margin-top: 2em;
+        color: #333;
+        font-size: 0.95em;
+        line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="/DayDream/main.html">[백일몽주식회사 임직원 복지몰]</a></h1>
+        <h2>포인트 등록</h2>
+    </header>
+    <hr>
+    <div>
+        <form>
+            <label for="level">어둠 등급</label>
+            <select id="level" name="level">
+                <option value="F">F</option>
+                <option value="D">D</option>
+                <option value="C">B</option>
+                <option value="B">C</option>
+                <option value="A">A</option>
+                <option value="S">S</option>
+            </select><br>
+            <label for="dname">어둠명</label>
+            <input type="text" id="dname" name="dname">
+            <input type="file" id="dfile" name="dfile">
+            <button>제출</button>
+        </form>
+    </div>
+    <div>
+        * 어둠 등급별 기본 지급 포인트<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;F등급 : 100p<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;D등급 : 1000p<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;C등급 : 2500p<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;B등급 : 10000p<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;A등급 : 100000p<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;S등급 : 별도 심사<br><br>
+        * 어둠 특수성에 따라 추가 수당이 붙을 수 있습니다.
+    </div>
+
+    <script>
+        const user = localStorage.getItem("loggedInUser");
+      
+        if (!user) {
+          alert("로그인이 필요합니다.");
+          window.location.href = "login.html";
+        } else {
+          document.getElementById("auth-section")?.classList.add("hidden");
+          document.getElementById("user-info")?.classList.remove("hidden");
+          document.getElementById("welcome")?.innerHTML = `<em>${user}</em>님`;
+      
+          document.getElementById("mobile-auth-section")?.classList.add("hidden");
+          document.getElementById("mobile-user-info")?.classList.remove("hidden");
+          document.getElementById("mobile-welcome")?.innerHTML = `<em>${user}</em>님`;
+        }
+      </script>
+      <script src="count.js"></script>
+</body>
+</html>

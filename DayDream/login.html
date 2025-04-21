@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <style>
+        body {
+        font-family: 'Segoe UI', sans-serif;
+        margin: 0;
+        padding: 2em;
+        background-color: #f8f9fa;
+        }
+
+        header h1 a {
+        text-decoration: none;
+        color: #2c3e50;
+        }
+
+        form {
+        max-width: 400px;
+        margin: 5em auto;
+        padding: 2em;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+        display: block;
+        margin-top: 1em;
+        font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+        width: 95%;
+        padding: 0.7em;
+        margin-top: 0.3em;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        }
+
+        button {
+        margin-top: 1.5em;
+        padding: 0.8em 1.5em;
+        background-color: #0778D7;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        }
+
+        a {
+        display: inline-block;
+        color: #0778D7;
+        text-decoration: none;
+        }
+
+        #error-message {
+        text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="/DayDream/main.html">[백일몽주식회사 임직원 복지몰]</a></h1>
+    </header>
+
+    <div id="error-message" style="color: red; display: none; margin-bottom: 1em;"></div>
+
+    <form onsubmit="loginUser(event)">
+        <label for="Id">아이디</label>
+        <input type="text" id="Id" name="Id"><br>
+        <label for="pw">비밀번호</label>
+        <input type="password" id="pw" name="pw"><br>
+        <button type="submit">로그인</button>
+        <a href="signup.html">회원가입</a>
+      </form>
+      
+      <script>
+        function loginUser(e) {
+          e.preventDefault();
+          const id = document.getElementById("Id").value;
+          const pw = document.getElementById("pw").value;
+          const errorDiv = document.getElementById("error-message");
+      
+          if (id === "yongj1111" && pw === "Dydajflgodks!111") {
+            // ✅ 로그인 성공 시 로컬스토리지에 사용자 정보 저장
+            localStorage.setItem("loggedInUser", "이자헌");
+      
+            errorDiv.style.display = "none"; // 에러 메시지 숨기기
+            window.location.href = "/DayDream/main.html";
+          } else {
+            errorDiv.textContent = "존재하지 않는 계정입니다.";
+            errorDiv.style.display = "block";
+          }
+        }
+      </script>
+            
+</body>
+</html>

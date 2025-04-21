@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>우주 쇼핑몰</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    header {
+      text-align: center;
+      padding: 1em 0;
+    }
+
+    header h1 a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      padding: 1em;
+    }
+
+    .cart-link {
+      align-self: flex-start;
+    }
+
+    article {
+      text-align: right;
+      font-style: italic;
+      flex: 1;
+    }
+
+    .red {
+      color: red;
+    }
+
+    .strikethrough {
+      text-decoration: line-through;
+    }
+
+    .product {
+      cursor: pointer;
+    }
+
+    .product:hover {
+      background: #f7f7f7;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><a href="">&lt;우주 쇼핑몰&gt;</a></h1>
+  </header>
+  <div class="container">
+    <div class="cart-link">
+      <a href="/Alien/cart.html">장바구니</a>
+    </div>
+    <article>
+      <h2>물건</h2>
+      <p class="product" onclick="toggleCart('흡혈 식기', 14999999)">흡혈 식기 - ₩14,999,999</p>
+      <p class="product" onclick="toggleCart('더 넓은 무전기', 4999999)">더 넓은 무전기 - ₩4,999,999</p>
+      <p class="product" onclick="toggleCart('앨리스 피크닉세트', 11999999)">앨리스 피크닉세트 - ₩11,999,999</p>
+      <p class="product" onclick="toggleCart('우리가 도움!', 66666666)">우리가 도움! - ₩66,666,666</p>
+      <p class="product" onclick="toggleCart('※할인!※ 은화 뱀', 4999999)">※할인!※ 은화 뱀 - <span class="red">₩4,999,999</span></p>
+      <p class="strikethrough">₩19,999,999</p>
+    </article>
+  </div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function toggleCart(name, price) {
+      const index = cart.findIndex(item => item.name === name);
+      if (index >= 0) {
+        cart.splice(index, 1);
+      } else {
+        cart.push({ name, price });
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${name} ${index >= 0 ? '삭제됐다' : '추가됐다'}!`);
+    }
+  </script>
+</body>
+</html>

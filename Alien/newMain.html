@@ -1,0 +1,169 @@
+<!-- newMain.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>우주 쇼핑몰</title>
+  <style>
+    @font-face {
+        font-family: 'DungGeunMo';
+        src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Ownglyph_corncorn-Rg';
+        src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2412-1@1.0/Ownglyph_corncorn-Rg.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    @keyframes rainbowHeader {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+
+    header {
+      text-align: center;
+      padding: 1em 0;
+      background: linear-gradient(270deg, red, orange, yellow, green, blue, violet, red);
+      background-size: 1400% 1400%;
+      animation: rainbowHeader 5s linear infinite;
+    }
+
+    header h1 a {
+      text-decoration: none;
+      color: white;
+      font-family: 'DungGeunMo', sans-serif;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      padding: 1em;
+    }
+
+    .container a{
+      font-family: 'DungGeunMo', sans-serif;
+      text-decoration: none;
+      color: blue;
+    }
+
+    .container a:hover{
+      color: red;
+    }
+
+    .cart-link {
+      align-self: flex-start;
+    }
+
+    article {
+      font-family: 'Ownglyph_corncorn-Rg', sans-serif;
+      text-align: right;
+      font-style: italic;
+      flex: 1;
+    }
+
+    article h2 {
+      font-style: normal;
+      font-size: 30px;
+    }
+
+    article p {
+      font-size: 20px;
+    }
+
+    .red {
+      color: red;
+    }
+
+    .strikethrough {
+      text-decoration: line-through;
+      text-align: center;
+    }
+
+    .product {
+      cursor: pointer;
+    }
+
+    .product:hover {
+      color: rgb(47, 255, 137);
+    }
+
+    .tooltip-star {
+      color: blue;
+      position: relative;
+    }
+
+    .tooltip-star:hover::before {
+      content: "★ 이전에 샀던 물건과 비슷한!";
+      position: absolute;
+      top: -1.5em;
+      right: 0;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 2px 5px;
+      font-size: 0.9em;
+      white-space: nowrap;
+      z-index: 10;
+      font-style: normal;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><a href="">&lt;우주 쇼핑몰&gt;</a></h1>
+  </header>
+  <div class="container">
+    <div class="cart-link">
+      <a href="/Alien/newCart.html">장바구니</a>
+    </div>
+    <article>
+      <h2>물건 목록</h2>
+      <p class="product" onclick="toggleCart('해피 메이커', 27999999)">
+        해피 메이커 - ₩27,999,999 <span class="tooltip-star">★</span>
+      </p>
+      <p class="product" onclick="toggleCart('노스텔지어 캔디', 12999999)">
+        노스텔지어 캔디 - ₩12,999,999 <span class="tooltip-star">★</span>
+      </p>
+      <p class="product" onclick="toggleCart('포장지 12B357나', 9999999)">
+        포장지 12B357나 - ₩9,999,999
+      </p>
+      <p class="product" onclick="toggleCart('네크로노미콘', 49999999)">
+        네크로노미콘 - ₩49,999,999
+      </p>
+      <p class="product" onclick="toggleCart('우리가 도움!', 66666666)">
+        우리가 도움! - ₩66,666,666
+      </p>
+      <p><b>정말 1억 이상 사면 20% 할인!</b></p>
+      <p><b>우주 쇼핑몰 VIP 된다!</b></p>
+    </article>
+  </div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem('newCart')) || [];
+
+    function toggleCart(name, price) {
+      const index = cart.findIndex(item => item.name === name);
+      if (index >= 0) {
+        cart.splice(index, 1);
+      } else {
+        cart.push({ name, price });
+      }
+      localStorage.setItem('newCart', JSON.stringify(cart));
+      alert(`${name} ${index >= 0 ? '삭제됐다' : '추가됐다'}!`);
+    }
+  </script>
+</body>
+</html>

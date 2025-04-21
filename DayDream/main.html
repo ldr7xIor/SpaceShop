@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[백일몽주식회사 임직원 복지몰]</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <header>
+    <h1><a href="">[백일몽주식회사 임직원 복지몰]</a></h1>
+    
+    <form onsubmit="return false">
+      <input type="text" id="search" name="search" placeholder="검색">
+      <button id="search-button">검색</button>
+    </form>
+    
+    <div class="right-section" id="point-link">
+      <a href="#" onclick="handlePointAccess()">포인트 등록</a>
+    </div>
+    <div class="right-section" id="auth-section">
+      <a href="login.html">로그인</a>
+      <span>|</span>
+      <a href="/DayDream/signup.html">회원가입</a>
+    </div>
+    <div class="right-section hidden" id="user-info">
+      <span id="welcome"></span>
+      <span>??????p</span>
+      <span>장바구니</span>
+      <button onclick="logout()" style="margin-left: 1em;">로그아웃</button>
+    </div>
+         
+
+    <!-- 햄버거 메뉴 아이콘 -->
+    <div class="menu-icon" id="hamburger-button" onclick="toggleMenu(event)"> <!-- ✅ id 추가 -->
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <!-- 모바일 메뉴 -->
+    <div class="mobile-menu" id="mobile-menu" onclick="event.stopPropagation()"> <!-- ✅ 클릭 내부 이벤트 stop -->
+      <div id="mobile-auth-section">
+        <a href="login.html">로그인</a>
+        <a href="/DayDream/signup.html">회원가입</a>
+      </div>
+
+      <div id="mobile-user-info" class="hidden">
+        <span id="mobile-welcome"><em>사용자</em>님</span>
+        <span>보유 포인트: <strong>??????p</strong></span>
+        <span>🛒 장바구니</span>
+        <button onclick="logout()">로그아웃</button>
+
+      </div>
+      <hr id="pointhr">
+      <a href="#" onclick="handlePointAccess()">포인트 등록</a>
+    </div>
+
+    <!-- 메뉴 외부 클릭 시 닫기 -->
+    <div id="mobile-overlay" class="hidden" onclick="closeMenu()"></div> <!-- ✅ 오버레이 클릭으로 닫기 -->
+
+      
+  </header>
+  <hr>
+  
+  <div id="mobile-overlay" class="hidden"></div>
+
+  <article>
+    <h2 class="section-title">특가</h2>
+    <div class="product-grid" >
+      <div class="product" onclick="goToDetail(this)" data-name="XX 로봇 청소기" data-price="100">
+        <img src="/images/vacuum_cleaner.png" alt="XX 로봇 청소기">
+        <p>XX사 로봇 청소기</p>
+        <p>100p</p>
+      </div>
+      <div class="product" onclick="goToDetail(this)" data-name="ㅁㅁ 정수기" data-price="90">
+        <img src="/images/water_purifier.png" alt="ㅁㅁ 정수기">
+        <p>ㅁㅁ사 정수기</p>
+        <p>90p</p>
+      </div>
+      <div class="product" onclick="goToDetail(this)" data-name="ㅇㅇ 실내 자전거" data-price="98">
+        <img src="/images/indoor_bike.png" alt="ㅇㅇ 실내 자전거">
+        <p>ㅇㅇ사 실내 자전거</p>
+        <p>98p</p>
+      </div>
+      <div class="product" onclick="goToDetail(this)" data-name="^^ 커피머신" data-price="105">
+        <img src="/images/coffee_machine.png" alt="^^ 커피머신">
+        <p>^^ 커피머신</p>
+        <p>105p</p>
+      </div>
+      <div class="product" onclick="goToDetail(this)" data-name="ㅇㅅㅇ 종아리 안마기" data-price="100">
+        <img src="/images/calf_massager.png" alt="ㅇㅅㅇ 종아리 안마기">
+        <p>ㅇㅅㅇ 종아리 안마기</p>
+        <p>100p</p>
+      </div>
+    </div>
+  </article>
+  <hr>
+
+  <article>
+    <h2 class="section-title" id="rp">자사 제품 및 가전 제품</h2>
+    <div class="sort-options">
+      <span style="cursor:pointer" onclick="sortProducts('name')">인기순</span>
+      <span style="cursor:pointer" onclick="sortProducts('asc')">낮은 가격순</span>
+      <span style="cursor:pointer" onclick="sortProducts('desc')">높은 가격순</span>
+    </div>
+    <div class="product-grid" id="recommended-products">
+      <div class="product" onclick="goToDetail(this)" data-name="사과 노트북 pro" data-price="280">
+        <img src="/images/laptop.png" alt="사과 노트북 pro">
+        <p>사과 노트북 pro</p>
+        <p>280p</p>
+      </div>
+      <div class="product" onclick="goToDetail(this)" data-name="최신식 zz 세탁기" data-price="500">
+        <img src="/images/washing_machine.png" alt="최신식 zz 세탁기">
+        <p>최신식 zz 세탁기</p>
+        <p>500p</p>
+      </div>
+      <div class="product" onclick="goToDetail(this)" data-name="신형 sss급 냉장고" data-price="470">
+        <img src="/images/refrigerator.png" alt="신형 sss급 냉장고">
+        <p>신형 sss급 냉장고</p>
+        <p>470p</p>
+      </div>
+      <div class="product" onclick="goToDetail(this)" data-name="4k UHD OLED 스마트 TV" data-price="510">
+        <img src="/images/TV.png" alt="4k UHD OLED 스마트 TV">
+        <p>4k UHD OLED 스마트 TV</p>
+        <p>510p</p>
+      </div>
+      <div class="product" onclick="goToDetail(this)" data-name="각막 재생 물약" data-price="100">
+        <img src="/images/cornea_potion.png" alt="각막 재생 물약">
+        <p>각막 재생 물약</p>
+        <p>100p</p>
+      </div>
+      <div class="product" onclick="goToDetail(this)" data-name="고막 재생 물약" data-price="100">
+        <img src="/images/drumhead_potion.png" alt="고막 재생 물약">
+        <p>고막 재생 물약</p>
+        <p>100p</p>
+      </div>
+      <div class="product" onclick="goToDetail(this)" data-name="피부 재생 물약" data-price="100">
+        <img src="/images/skin_regen_potion.png" alt="피부 재생 물약">
+        <p>피부 재생 물약</p>
+        <p>100p</p>
+      </div>
+      <div class="product" onclick="goToDetail(this)" data-name="탈모약" data-price="100">
+        <img src="/images/hair_loss_potion.png" alt="탈모약">
+        <p>탈모약</p>
+        <p>100p</p>
+      </div>
+      <div class="product" onclick="goToDetail(this)" data-name="재생 물약 (C)" data-price="3000">
+        <img src="/images/regen_potion_C.png" alt="재생 물약 (C)">
+        <p>재생 물약 (C)</p>
+        <p>3000p</p>
+      </div>
+      <div class="product" onclick="goToDetail(this)" data-name="재생 물약 (B)" data-price="15000">
+        <img src="/images/regen_potion_B.png" alt="재생 물약 (B)">
+        <p>재생 물약 (B)</p>
+        <p>15,000p</p>
+      </div>
+      <div class="product" onclick="goToDetail(this)" data-name="재생 물약 (A)" data-price="105000">
+        <img src="/images/regen_potion_A.png" alt="재생 물약 (A)">
+        <p>재생 물약 (A)</p>
+        <p>105,000p</p>
+      </div>
+      <div class="product" onclick="goToDetail(this)" data-name="사막방울뱀" data-price="170000">
+        <img src="/images/outstanding.png" alt="사막방울뱀">
+        <p>사막방울뱀</p>
+        <p>170,000p</p>
+      </div>
+      <div class="product" onclick="goToDetail(this)" data-name="소원권" data-price="500000">
+        <img src="/images/wish_potion.png" alt="소원권">
+        <p>소원권</p>
+        <p>500,000p</p>
+      </div>
+    </div>
+  </article> 
+
+  <script src="main.js"></script>
+  <script src="count.js"></script>
+</body>
+</html>

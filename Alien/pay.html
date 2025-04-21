@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>결제 진행</title>
+  <style>
+    @font-face {
+        font-family: 'DungGeunMo';
+        src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: sans-serif;
+    }
+
+    #first, #second, #last {
+      display: none;
+    }
+
+    #first.active,
+    #second.active,
+    #last.active {
+      display: block;
+    }
+
+    #first p {
+      font-size: 18px;
+    }
+
+    #second h1 {
+      font-weight: bold;
+    }
+
+    h3 {
+      font-weight: 400;
+    }
+
+    #second h3:nth-child(3) {
+      font-style: italic;
+    }
+
+    #timer {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div id="first" class="active">
+    <h2>아래 송금 부탁</h2>
+    <p>외계은행 : uc774-uc790-ud5CC</p>
+    <p>금액 : <span id="amount">₩0</span></p>
+  </div>
+
+  <div id="second">
+    <h1>성공 구매!</h1>
+    <h3>물건이 <span style="text-decoration: underline;">로켓</span>을 탔다!</h3>
+    <h3><em>도착까지</em> <span id="timer">00:00:08</span></h3>
+  </div>
+
+  <div id="last">
+    <h1>도착!</h1>
+  </div>
+
+  <script>
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    let total = cartItems.reduce((sum, item) => sum + item.price, 0);
+    let finalTotal = total;
+  
+    document.getElementById('amount').textContent = `₩${finalTotal.toLocaleString()}`;
+  
+    setTimeout(() => {
+      document.getElementById('first').classList.remove('active');
+      document.getElementById('second').classList.add('active');
+  
+      let seconds = 8;
+      const timerEl = document.getElementById('timer');
+      const countdown = setInterval(() => {
+        seconds--;
+        timerEl.textContent = `00:00:${seconds.toString().padStart(2, '0')}`;
+        if (seconds <= 0) {
+          clearInterval(countdown);
+          document.getElementById('second').classList.remove('active');
+          document.getElementById('last').classList.add('active');
+          
+          // 5초 뒤에 renewal.html로 이동
+          setTimeout(() => {
+            window.location.href = "renewal.html";  // 페이지 이동
+          }, 5000);
+        }
+      }, 1000);
+    }, 5000);
+  </script>
+</body>
+</html>

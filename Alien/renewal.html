@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>우주 쇼핑몰</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: black;
+      color: white;
+      font-family: 'Pretendard', sans-serif;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin: 0.5em 0;
+    }
+    h3 {
+      margin: 0.2em 0;
+      font-weight: normal;
+    }
+    #underline {
+        font-weight: bolder;
+        text-decoration-line: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>&lt;우주 쇼핑몰&gt;</h1>
+  <h3 id="underline">※ 다시 꾸미는 중 (일시적 사태) ※</h3>
+  <h3>&gt;&gt; 나는 이해했다!</h3>
+
+  <script>
+    // 5초 후에 newTitle.html로 이동
+    setTimeout(() => {
+      window.location.href = "newTitle.html";  // 페이지 이동
+    }, 5000);
+  </script>
+</body>
+</html>

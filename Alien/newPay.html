@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>결제 진행</title>
+  <style>
+    @font-face {
+      font-family: 'DungGeunMo';
+      src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: 'DungGeunMo', sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #first, #second, #last {
+      display: none;
+    }
+
+    #first.active,
+    #second.active,
+    #last.active {
+      display: block;
+    }
+
+    #first p {
+      font-size: 20px;
+    }
+
+    h3 {
+      font-weight: lighter;
+    }
+
+    #second h1 {
+      font-weight: bold;
+    }
+
+    #timer {
+      text-decoration: underline;
+    }
+
+    canvas#fireworks {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="fireworks"></canvas>
+
+  <div id="first" class="active">
+    <h2>아래 송금 부탁</h2>
+    <p>외계은행 : uc774-uc790-ud5CC</p>
+    <p>금액 : <span id="amount">₩0</span></p>
+  </div>
+
+  <div id="second">
+    <h1>성공 구매!</h1>
+    <h3>물건이 <span style="text-decoration: underline;">로켓</span>을 탔다!</h3>
+    <h3><em>도착까지</em> <span id="timer">00:00:08</span></h3>
+  </div>
+
+  <div id="last">
+    <h1>도착!</h1>
+  </div>
+
+  <!-- Fireworks 모듈을 불러오고 window.Fireworks에 등록 -->
+  <script type="module">
+    import { Fireworks } from 'https://cdn.skypack.dev/fireworks-js'
+    window.Fireworks = Fireworks;
+  </script>
+
+  <!-- 실제 코드 -->
+  <script>
+    const cartItems = JSON.parse(localStorage.getItem('newCart')) || [];
+    let total = cartItems.reduce((sum, item) => sum + item.price, 0);
+    let finalTotal = total;
+
+    if (total > 100000000) {
+      finalTotal = Math.floor(total * 0.8); // 20% 할인
+    }
+
+    document.getElementById('amount').textContent = `₩${finalTotal.toLocaleString()}`;
+
+    setTimeout(() => {
+      document.getElementById('first').classList.remove('active');
+      document.getElementById('second').classList.add('active');
+
+      const container = document.getElementById('fireworks');
+      const fireworks = new Fireworks(container, {
+        hue: { min: 0, max: 360 },
+        delay: { min: 15, max: 30 },
+        speed: 3,
+        acceleration: 1.05,
+        friction: 0.97,
+        gravity: 1.5,
+        particles: 90,
+        trace: 3,
+        explosion: 5
+      });
+      fireworks.start();
+
+      let seconds = 8;
+      const timerEl = document.getElementById('timer');
+      const countdown = setInterval(() => {
+        seconds--;
+        timerEl.textContent = `00:00:${seconds.toString().padStart(2, '0')}`;
+        if (seconds <= 0) {
+          clearInterval(countdown);
+          fireworks.stop();
+          document.getElementById('second').classList.remove('active');
+          document.getElementById('last').classList.add('active');
+        }
+      }, 1000);
+    }, 5000);
+  </script>
+</body>
+</html>

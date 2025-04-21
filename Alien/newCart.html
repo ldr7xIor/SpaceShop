@@ -1,0 +1,138 @@
+<!-- newCart.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>장바구니</title>
+  <style>
+    @font-face {
+        font-family: 'DungGeunMo';
+        src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Ownglyph_corncorn-Rg';
+        src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2412-1@1.0/Ownglyph_corncorn-Rg.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+    }
+    
+    body {
+      font-family: sans-serif;
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    header {
+      align-self: center;
+    }
+
+    header h1 a {
+      text-decoration: none;
+      color: black;
+      font-family: 'DungGeunMo', sans-serif;
+    }
+
+    h2 {
+      align-self: flex-end;
+      font-family: 'DungGeunMo', sans-serif;
+    }
+
+    #cart-items {
+      text-align: right;
+      width: 100%;
+    }
+
+    .product {
+      font-size: 20px;
+      margin-bottom: 0.5em;
+      font-style: italic;
+      font-family: 'Ownglyph_corncorn-Rg', sans-serif;
+    }
+
+    .total {
+      margin-top: 1em;
+      font-weight: bold;
+      text-align: right;
+      width: 100%;
+    }
+
+    .strikethrough {
+      text-decoration: line-through;
+      text-align: center;
+      font-family: 'Ownglyph_corncorn-Rg', sans-serif;
+    }
+
+    .discount {
+      font-family: 'Ownglyph_corncorn-Rg', sans-serif;
+      color: red;
+      font-size: 26px;
+      font-style: italic;
+      text-align: center;
+      width: 100%;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 8px;
+      align-self: flex-end;
+      background-color: rgb(86, 238, 162);
+      border: none;
+      border-radius: 12px;
+    }
+
+    button a{
+      text-decoration: none;
+      font-family: 'Ownglyph_corncorn-Rg', sans-serif;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><a href="/Alien/newMain.html">&lt;우주 쇼핑몰&gt;</a></h1>
+  </header>
+  <h2>장바구니</h2>
+  <div id="cart-items"></div>
+  <div class="total" id="total"></div>
+  <div id="discount-info"></div>
+  <div>
+    <br>
+    <button><a href="newPay.html">구매하기</a></button>
+  </div>
+
+  <script>
+    const cartItems = JSON.parse(localStorage.getItem('newCart')) || [];
+    const cartContainer = document.getElementById('cart-items');
+    const totalEl = document.getElementById('total');
+    const discountInfo = document.getElementById('discount-info');
+
+    let total = 0;
+    cartItems.forEach(item => {
+      const p = document.createElement('p');
+      p.className = 'product';
+      p.textContent = `${item.name} - ₩${item.price.toLocaleString()}`;
+      cartContainer.appendChild(p);
+      total += item.price;
+    });
+
+    if (total >= 100000000) {
+      totalEl.className = 'strikethrough';
+      totalEl.textContent = `= ₩${total.toLocaleString()}`;
+
+      const discountPrice = Math.floor(total * 0.8);
+      const discountText = document.createElement('div');
+      discountText.className = 'discount';
+      discountText.textContent = `※할인했다!※ : ${discountPrice.toLocaleString()}`;
+      discountInfo.appendChild(discountText);
+    } else {
+      totalEl.textContent = `총합: ₩${total.toLocaleString()}`;
+    }
+  </script>
+</body>
+</html>
