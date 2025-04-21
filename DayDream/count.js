@@ -37,9 +37,10 @@
       
       const text = document.createElement("div");
       text.innerHTML = `
-      <p><em><a href="/Alien/title.html" class="alien-link">1주년 감사 할인 중! ~80%</a></em></p>        <p><em><a href="/Alien/title.html" class="alien-link">직장이 지루한가요? &gt;&gt; 클릭</a></em></p>
-      <p><em><a href="/Alien/title.html" class="alien-link">더 강해지고 싶나요? &gt;&gt; 클릭</a></em></p>
-      <p><em><a href="/Alien/title.html" class="alien-link">멋진 물건을 가지고 싶나요? &gt;&gt; 클릭</a></em></p>
+      <p><em><a href="../Alien/title.html" class="alien-link">1주년 감사 할인 중! ~80%</a></em></p>        
+      <p><em><a href="../Alien/title.html" class="alien-link">직장이 지루한가요? &gt;&gt; 클릭</a></em></p>
+      <p><em><a href="../Alien/title.html" class="alien-link">더 강해지고 싶나요? &gt;&gt; 클릭</a></em></p>
+      <p><em><a href="../Alien/title.html" class="alien-link">멋진 물건을 가지고 싶나요? &gt;&gt; 클릭</a></em></p>
       `;
 
       text.style.zIndex = "1002";
