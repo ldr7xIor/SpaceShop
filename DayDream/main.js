@@ -119,7 +119,7 @@ function toggleMenu(event) {
   // 포인트 등록 진입
   function handlePointAccess() {
     if (user) {
-      window.location.href = "/DayDream/PointRegi.html";
+      window.location.href = "PointRegi.html";
     } else {
       alert("로그인이 필요합니다.");
     }

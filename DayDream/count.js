@@ -7,7 +7,7 @@
 
     const hand = document.createElement("img");
     hand.id = "alien-hand";
-    hand.src = "/images/ALIEN HAND2.gif";
+    hand.src = "../images/ALIEN HAND2.gif";
     hand.style.position = "fixed";
     hand.style.left = "0px";
     hand.style.bottom = "0px";
@@ -22,7 +22,7 @@
       bubble.style.bottom = "90px";
       bubble.style.width = "260px";
       bubble.style.aspectRatio = "4 / 3";
-      bubble.style.backgroundImage = "url('/images/speech_bubble.png')";
+      bubble.style.backgroundImage = "url('../images/speech_bubble.png')";
       bubble.style.backgroundSize = "contain";
       bubble.style.backgroundRepeat = "no-repeat";
       bubble.style.backgroundPosition = "center";
