@@ -46,18 +46,28 @@ function toggleMenu(event) {
     }
   });
 
-  // 로그인 상태 확인 및 UI 반영
-  const user = localStorage.getItem("loggedInUser");
+  const userData = JSON.parse(localStorage.getItem("loggedInUser"));
 
-  if (user) {
+  if (userData) {
     document.getElementById("auth-section")?.classList.add("hidden");
     document.getElementById("user-info")?.classList.remove("hidden");
-    document.getElementById("welcome").innerHTML = `<em>${user}</em>님`;
-
+    document.getElementById("welcome").innerHTML = `<em>${userData.name}</em>님`;
+  
     document.getElementById("mobile-auth-section")?.classList.add("hidden");
     document.getElementById("mobile-user-info")?.classList.remove("hidden");
-    document.getElementById("mobile-welcome").innerHTML = `<em>${user}</em>님`;
+    document.getElementById("mobile-welcome").innerHTML = `<em>${userData.name}</em>님`;
+  
+    const pointDisplay = document.getElementById("user-point");
+    if (pointDisplay) {
+      pointDisplay.textContent = `${userData.point}p`;
+    }
+  
+    const mobilePointDisplay = document.getElementById("mobile-user-point");
+    if (mobilePointDisplay) {
+      mobilePointDisplay.textContent = `${userData.point}p`;
+    }
   }
+  
 
   // 정렬 기능
   function sortProducts(method) {
@@ -75,12 +85,6 @@ function toggleMenu(event) {
 
     container.innerHTML = "";
     sorted.forEach(item => container.appendChild(item));
-  }
-
-  // 로그인 예시
-  function login() {
-    localStorage.setItem("loggedInUser", "이자헌");
-    window.location.href = "main.html";
   }
 
   function logout() {

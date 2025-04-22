@@ -87,16 +87,26 @@
           const errorDiv = document.getElementById("error-message");
       
           if (id === "yongj1111" && pw === "Dydajflgodks!111") {
-            localStorage.setItem("loggedInUser", "이자헌");
-      
+            localStorage.setItem("loggedInUser", JSON.stringify({
+              name: "이자헌",
+              point: "??????"
+            }));
             errorDiv.style.display = "none";
             window.location.href = "main.html";
+      
+          } else if (id === "1" && pw === "1") {
+            localStorage.setItem("loggedInUser", JSON.stringify({
+              name: "김솔음",
+              point: 100
+            }));
+            errorDiv.style.display = "none";
+            window.location.href = "main.html";
+      
           } else {
-            errorDiv.textContent = "존재하지 않는 계정입니다.";
+            errorDiv.textContent = "아이디나 비밀번호가 틀렸습니다.";
             errorDiv.style.display = "block";
           }
         }
-      </script>
-            
+      </script>    
 </body>
 </html>

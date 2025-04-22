@@ -23,12 +23,14 @@
       <span>|</span>
       <a href="signup.html">회원가입</a>
     </div>
+
     <div class="right-section hidden" id="user-info">
       <span id="welcome"></span>
-      <span>??????p</span>
+      <span id="user-point"></span>
       <span>장바구니</span>
       <button onclick="logout()" style="margin-left: 1em;">로그아웃</button>
     </div>
+
          
     <div class="menu-icon" id="hamburger-button" onclick="toggleMenu(event)">
       <div></div>
@@ -44,11 +46,11 @@
 
       <div id="mobile-user-info" class="hidden">
         <span id="mobile-welcome"><em>사용자</em>님</span>
-        <span>보유 포인트: <strong>??????p</strong></span>
+        <span>보유 포인트: <strong id="mobile-user-point"></strong></span>
         <span>🛒 장바구니</span>
         <button onclick="logout()">로그아웃</button>
-
       </div>
+
       <hr id="pointhr">
       <a href="#" onclick="handlePointAccess()">포인트 등록</a>
     </div>
