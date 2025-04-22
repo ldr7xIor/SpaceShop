@@ -120,12 +120,13 @@ function toggleMenu(event) {
     filterProducts(keyword);
   });
 
-  // 포인트 등록 진입
   function handlePointAccess() {
-    if (userData) {
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (user) {
       window.location.href = "PointRegi.html";
     } else {
       alert("로그인이 필요합니다.");
+      window.location.href = "login.html";
     }
   }
 
